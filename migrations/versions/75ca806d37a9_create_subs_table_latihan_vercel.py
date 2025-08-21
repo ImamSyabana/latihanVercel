@@ -1,8 +1,8 @@
-"""create subs table latihan
+"""Create subs table latihan vercel
 
-Revision ID: 312649e2eea1
+Revision ID: 75ca806d37a9
 Revises: 
-Create Date: 2025-08-21 21:27:06.623286
+Create Date: 2025-08-21 23:31:58.708159
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '312649e2eea1'
+revision = '75ca806d37a9'
 down_revision = None
 branch_labels = None
 depends_on = None
