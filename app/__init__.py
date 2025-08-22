@@ -27,19 +27,16 @@ login_manager.init_app(app)
 login_manager.login_view = "login"
 
 
-from app import routes, models
-
 @login_manager.user_loader
 def load_user(id):
     if id:
-        # This function MUST exist and return a user object or None
         return db.get_or_404(models.User, int(id))
     return None
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
-
+from app import routes, models
 
 # Setup console logging
 if not app.debug:
