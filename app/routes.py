@@ -1,16 +1,18 @@
 from flask import render_template, request, redirect, url_for, flash
 from app import app, db
-
+from app.models import BlogPost, User
 
 @app.route('/')
-def index():
-    return render_template('index.html')
+def get_all_posts():
+    # data yang ada di tabel blog_posts
+    result = db.session.execute(db.select(BlogPost))
+    posts = result.scalars().all()
 
-@app.route('/subscribe', methods=['POST'])
-def subscribe():
-    email = request.form['email']
-    new_subscription = Subscription(email=email)
-    db.session.add(new_subscription)
-    db.session.commit()
-    flash('Subscription successful!!', 'success')
-    return redirect(url_for('index'))
+    # data yang ada di tabel user
+    
+    user_results = db.session.execute(db.Select(User))
+    users = user_results.scalars().all()
+
+    return render_template("index.html", all_posts=posts, users = users)
+
+
