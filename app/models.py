@@ -4,12 +4,6 @@ from flask_login import UserMixin, login_user, LoginManager, current_user, logou
 from sqlalchemy.orm import relationship, DeclarativeBase, Mapped, mapped_column
 from sqlalchemy import Integer, String, Text, ForeignKey
 
-class Subscription(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
-    subscribed_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
-
-
 # TODO: Create a User table for all your registered users. 
 class User(UserMixin, db.Model):
     __tablename__ = "users"
