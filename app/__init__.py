@@ -6,6 +6,7 @@ import logging
 from flask_ckeditor import CKEditor
 from flask_bootstrap import Bootstrap5
 from flask_login import LoginManager
+from flask_gravatar import Gravatar
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -28,7 +29,17 @@ def create_app():
     login_manager.init_app(app)
     login_manager.login_view = "login"
 
-    from app import routes, models
+    # create gravatar 
+    gravatar = Gravatar(app,
+                        size=100,
+                        rating='g',
+                        default='retro',
+                        force_default=False,
+                        force_lower=False,
+                        use_ssl=False,
+                        base_url=None)
+    
+    #from app import routes, models
 
     # Setup console logging
     if not app.debug:
