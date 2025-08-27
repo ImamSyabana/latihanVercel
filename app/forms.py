@@ -1,13 +1,13 @@
 from flask_wtf import FlaskForm
-from flask_bootstrap import Bootstrap5
+from flask_bootstrap import Bootstrap
 from flask import Flask, render_template, redirect, url_for
 from wtforms import StringField, SubmitField, PasswordField
 from wtforms.validators import DataRequired, URL
 from flask_ckeditor import CKEditorField
 
-app = Flask(__name__)
-app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
-Bootstrap5(app)
+# app = Flask(__name__)
+# app.config['SECRET_KEY'] = '8BYkEfBA6O6donzWlSihBXox7C0sKR6b'
+# Bootstrap(app)
 
 # WTForm for creating a blog post
 class CreatePostForm(FlaskForm):
