@@ -4,14 +4,14 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 import logging
 from flask_ckeditor import CKEditor
-from flask_bootstrap import Bootstrap5
+from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
 from flask_gravatar import Gravatar
 
 db = SQLAlchemy()
 migrate = Migrate()
 ckeditor = CKEditor()
-bootstrap = Bootstrap5()
+bootstrap = Bootstrap()
 login_manager = LoginManager()
 
 def create_app():

@@ -6,7 +6,7 @@ Flask==3.1.2
 Flask-Migrate==4.1.0
 Flask-SQLAlchemy==3.1.1
 Flask-CKEditor==1.0.0
-Flask-Bootstrap5
+Flask-Bootstrap==3.3.7.1
 Flask-WTF==1.2.2
 WTForms==3.2.1
 bleach==4.1.0
