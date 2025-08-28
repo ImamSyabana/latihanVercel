@@ -6,13 +6,19 @@ import logging
 from flask_ckeditor import CKEditor
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
-from flask_gravatar import Gravatar
+import hashlib
+
 
 db = SQLAlchemy()
 migrate = Migrate()
 ckeditor = CKEditor()
 bootstrap = Bootstrap()
 login_manager = LoginManager()
+
+def gravatar_url(email, size=100, default='retro', rating='g'):
+    email = email.strip().lower().encode('utf-8')
+    hash = hashlib.md5(email).hexdigest()
+    return f"https://www.gravatar.com/avatar/{hash}?s={size}&d={default}&r={rating}"
 
 def create_app():
     app = Flask(__name__)
@@ -29,16 +35,8 @@ def create_app():
     login_manager.init_app(app)
     login_manager.login_view = "login"
 
-    # create gravatar 
-    gravatar = Gravatar(app,
-                        size=100,
-                        rating='g',
-                        default='retro',
-                        force_default=False,
-                        force_lower=False,
-                        use_ssl=False,
-                        base_url=None)
-    
+    app.jinja_env.globals['gravatar_url'] = gravatar_url
+
     #from app import routes, models
 
     # Setup console logging

@@ -1,4 +1,4 @@
-{% from "bootstrap5/form.html" import render_form %} {% block content %}
+{% from "bootstrap/form.html" import render_form %} {% block content %}
 {% include "header.html" %}
 
 <!-- Page Header-->
@@ -45,7 +45,7 @@
             {% for comment in comment_text %}
               <li>
                 <div class="commenterImage">
-                  <img src="{{ comment.author.email | gravatar }}" />
+                  <img src="{{ gravatar_url(comment.author.email) }}" />
                 </div>
                 <div class="commentText">
                   
