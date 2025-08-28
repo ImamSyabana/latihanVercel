@@ -30,6 +30,7 @@ def create_app():
     app.config.from_object(Config)
     ckeditor.init_app(app)
     bootstrap.init_app(app)
+    app.jinja_env.globals['bootstrap'] = bootstrap
     db.init_app(app)
     migrate.init_app(app, db)
     login_manager.init_app(app)
