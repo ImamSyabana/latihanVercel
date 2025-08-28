@@ -1,4 +1,7 @@
-{% from "bootstrap5/form.html" import render_form %} {% block content %}
+{% extends "base.html" %} 
+
+{% block content %}
+
 {% include "header.html" %}
 
 <!-- Page Header-->
@@ -37,15 +40,29 @@
 
         <!-- Comments Area -->
         <!-- TODO: Add a CKEditor for commenting below -->
-         {{ ckeditor.load() }} {{ ckeditor.config(name='comment') }} {{
-        render_form(comment_form, novalidate=True, button_map={"submit": "primary"}) }}
-        <div class="comment">
+         {{ ckeditor.load() }} 
+         {{ ckeditor.config(name='comment') }} 
+
+         <form method="POST">
+          {{ comment_form.hidden_tag() }}
+
+          <div class="mb-3">
+            {{ comment_form.text.label(class="form-label") }}
+            {{ comment_form.text(class="form-control", rows="3") }}
+          </div>
+
+          <div class="mb-3">
+            {{ comment_form.submit(class="btn btn-primary") }}
+          </div>
+        </form>
+
+        <div class="comment mt-4">
           <!-- TODO: Show all the comments on a post -->
-          <ul class="commentList">
+          <ul class="commentList list-unstyled">
             {% for comment in comment_text %}
               <li>
                 <div class="commenterImage">
-                  <img src="{{ gravatar_url(comment.author.email) }}" />
+                  <img src="{{ gravatar_url(comment.author.email) }}" class="rounded-circle" width="50"/>
                 </div>
                 <div class="commentText">
                   

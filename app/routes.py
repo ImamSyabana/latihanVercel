@@ -119,17 +119,26 @@ def contact():
 
 
 
+# def admin_only(func):
+#     @wraps(func)
+#     def wrapper_function(*args, **kwargs):
+#         if current_user.is_authenticated:
+#             if current_user.id ==1:
+#                 return func(*args, **kwargs)
+#             else: 
+#                 abort(403)
+#     return wrapper_function
+
 def admin_only(func):
     @wraps(func)
     def wrapper_function(*args, **kwargs):
-        if current_user.is_authenticated:
-            if current_user.id ==1:
-                return func(*args, **kwargs)
-            else: 
-                abort(403)
+        if not current_user.is_authenticated:
+            return abort(403)
+        if current_user.id == 1:
+            return func(*args, **kwargs)
+        else:
+            return abort(403)
     return wrapper_function
-
-
 
 
 # TODO: Allow logged-in users to comment on posts
